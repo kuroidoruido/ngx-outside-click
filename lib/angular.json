@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ngx-outside-click": {
+      "projectType": "library",
+      "root": "projects/ngx-outside-click",
+      "sourceRoot": "projects/ngx-outside-click/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/ngx-outside-click/tsconfig.lib.json",
+            "project": "projects/ngx-outside-click/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-outside-click/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-outside-click/src/test.ts",
+            "tsConfig": "projects/ngx-outside-click/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-outside-click/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-outside-click/tsconfig.lib.json",
+              "projects/ngx-outside-click/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ngx-outside-click"
+}

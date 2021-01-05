@@ -1,0 +1,48 @@
+name: Deploy to GitHub Pages
+
+on: [push]
+
+defaults:
+  run:
+    working-directory: demo
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Manage npm modules cache
+              uses: actions/cache@v1
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - name: Use Node.js 14.x
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+
+            - name: Install dependancies
+              run: npm install
+
+            - name: Run tests
+              run: npm run test:ci
+
+            - name: Build
+              run: npm run build
+
+            - name: Upload built output as artifact
+              uses: actions/upload-artifact@v2
+              with:
+                  name: konverty-master
+                  path: dist/ngx-outside-click/
+
+            - name: Deploy on Github Pages
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: npm run ng -- deploy --base-href=/ngx-outside-click/ --name="Anthony Pena" --email="anthony.pena@outlook.fr" --no-silent

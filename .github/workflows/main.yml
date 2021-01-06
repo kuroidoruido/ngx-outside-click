@@ -26,6 +26,14 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: 14.x
+            
+            - name: Install dependancies on lib
+              working-directory: lib
+              run: npm install
+
+            - name: Build lib
+              working-directory: lib
+              run: npm run build
 
             - name: Install dependancies
               run: npm install
@@ -36,8 +44,8 @@ jobs:
             - name: Upload built output as artifact
               uses: actions/upload-artifact@v2
               with:
-                  name: konverty-master
-                  path: dist/ngx-outside-click/
+                  name: ngx-outside-click-demo
+                  path: demo/dist/ngx-outside-click-demo/
 
             - name: Deploy on Github Pages
               env:

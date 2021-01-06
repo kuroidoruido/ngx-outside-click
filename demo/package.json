@@ -20,7 +20,7 @@
     "@angular/router": "~11.0.5",
     "ngx-outside-click": "file:../lib/dist/ngx-outside-click/",
     "rxjs": "~6.6.0",
-    "tslib": "^2.0.0",
+    "tslib": "^2.1.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

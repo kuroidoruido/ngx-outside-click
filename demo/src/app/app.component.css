@@ -1,0 +1,38 @@
+.toolbar {
+  display: flex;
+}
+.toolbar > * {
+  margin-right: 2rem;
+}
+.toolbar button {
+  border: none;
+  border-radius: 3px;
+  background-color: white;
+  color: black;
+  font-weight: 500;
+  cursor: pointer;
+}
+.toolbar button:hover {
+  background-color: rgba(0,0,0,0.06);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  padding: 3rem;
+}
+.card {
+  padding: 2rem;
+  background-color: white;
+  border: 1px lightgray solid;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+}
+.card ul {
+  list-style-type: none;
+  padding: 0;
+}

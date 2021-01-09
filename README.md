@@ -2,9 +2,18 @@
 
 Simple Angular module to detect a click outside of one element.
 
-See interactive demo here : https://kuroidoruido.github.io/ngx-outside-click/
+See interactive demo here: https://kuroidoruido.github.io/ngx-outside-click/
+Demo source code here: https://github.com/kuroidoruido/ngx-outside-click/tree/master/demo
 
-## Basic
+## Installation
+
+```bash
+npm install ngx-outside-click
+```
+
+## Usage
+
+### Basic
 
 Import NgxOutsideClickModule then
 
@@ -16,7 +25,7 @@ Import NgxOutsideClickModule then
 
 `$event` will be the ClickEvent.
 
-## Disable the listening
+### Disable the listening
 
 Import NgxOutsideClickModule then
 

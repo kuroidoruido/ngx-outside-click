@@ -4,26 +4,27 @@ import { Directive, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, 
   selector: '[ngxOutsideClick]'
 })
 export class OutsideClickDirective implements OnInit, OnChanges {
-  @Output() ngxOutsideClick = new EventEmitter<MouseEvent>();
   @Input() ngxOutsideClickEnabled = true;
+  @Output() ngxOutsideClick = new EventEmitter<MouseEvent>();
+  @Output() ngxOutsideClickInstance = new EventEmitter<OutsideClickDirective>();
   
-  private cancelListener: Function | undefined;
+  cancelListener: Function | undefined;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
-
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  
   ngOnInit(): void {
+    this.ngxOutsideClickInstance.emit(this);
     if (this.ngxOutsideClickEnabled) {
       this.listenDocumentClick();
     }
   }
-
+  
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.ngxOutsideClickEnabled) {
       if (changes.ngxOutsideClickEnabled.currentValue) {
         this.listenDocumentClick();
-      } else if(this.cancelListener) {
-        this.cancelListener();
-        delete this.cancelListener;
+      } else {
+        this.cancelListening();
       }
     }
   }
@@ -31,6 +32,13 @@ export class OutsideClickDirective implements OnInit, OnChanges {
   onDocumentClick(event: MouseEvent): void {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.ngxOutsideClick.emit(event);
+    }
+  }
+
+  cancelListening(): void {
+    if (this.cancelListener) {
+      this.cancelListener();
+      delete this.cancelListener;
     }
   }
 

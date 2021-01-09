@@ -31,9 +31,17 @@ jobs:
               working-directory: lib
               run: npm install
 
+            - name: Test lib
+              working-directory: lib
+              run: npm run test
+
             - name: Build lib
               working-directory: lib
-              run: npm run build
+              run: npm run build --prod
+
+            - name: Publish lib
+              working-directory: lib/dist/ngx-outside-click
+              run: npm publish
 
             - name: Install dependancies
               run: npm install

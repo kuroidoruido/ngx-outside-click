@@ -1,24 +1,29 @@
-# NgxOutsideClick
+# ngx-outside-click
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+Simple Angular module to detect a click outside of one element.
 
-## Code scaffolding
+See interactive demo here : https://kuroidoruido.github.io/ngx-outside-click/
 
-Run `ng generate component component-name --project ngx-outside-click` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-outside-click`.
-> Note: Don't forget to add `--project ngx-outside-click` or else it will be added to the default project in your `angular.json` file. 
+## Basic
 
-## Build
+Import NgxOutsideClickModule then
 
-Run `ng build ngx-outside-click` to build the project. The build artifacts will be stored in the `dist/` directory.
+```html
+<div (ngxOutsideClick)="doSomething($event)">
+    ...
+</div>
+```
 
-## Publishing
+`$event` will be the ClickEvent.
 
-After building your library with `ng build ngx-outside-click`, go to the dist folder `cd dist/ngx-outside-click` and run `npm publish`.
+## Disable the listening
 
-## Running unit tests
+Import NgxOutsideClickModule then
 
-Run `ng test ngx-outside-click` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```html
+<div (ngxOutsideClick)="doSomething($event)" [ngxOutsideClickEnabled]="false">
+    ...
+</div>
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This way you can enable/disable on need (think about performance issue when your app can have a lot of outside click but only some of them are useful at once).

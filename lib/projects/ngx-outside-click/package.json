@@ -1,6 +1,11 @@
 {
   "name": "ngx-outside-click",
-  "version": "0.0.1",
+  "version": "1.0.1",
+  "author": "Anthony Pena <anthony.pena@outlook.fr>",
+  "repository": {
+    "url": "https://github.com/kuroidoruido/ngx-outside-click"
+  },
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^11.0.5",
     "@angular/core": "^11.0.5"
